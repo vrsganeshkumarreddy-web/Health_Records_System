@@ -66,7 +66,6 @@ function handleAuth() {
             return;
         }
 
-        // Check if user already exists
         let userExists = users.some(function(user) {
             return user.email === email;
         });
@@ -82,7 +81,6 @@ function handleAuth() {
         createSession(newUser);
 
     } else {
-        // Login check
         let validUser = users.find(function(user) {
             return user.email === email && user.password === password;
         });
@@ -106,7 +104,6 @@ function logout() {
     checkSession();
 }
 
-// Verify current login session
 function checkSession() {
     let currentSession = JSON.parse(localStorage.getItem(SESSION_KEY));
     let authContainer = document.getElementById("authContainer");
@@ -173,7 +170,6 @@ function addRecord() {
     records.push(newRecord);
     localStorage.setItem(RECORDS_KEY, JSON.stringify(records));
 
-    // Clear inputs
     document.getElementById("name").value = "";
     document.getElementById("age").value = "";
     document.getElementById("disease").value = "";
