@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Records System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="authContainer" class="auth-wrapper">
+        <div class="auth-card">
+            <h2 id="authTitle">Health Records System</h2>
+            
+            <div class="auth-tabs">
+                <button id="tabLogin" class="tab-btn active" onclick="toggleAuthMode('login')">Login</button>
+                <button id="tabSignup" class="tab-btn" onclick="toggleAuthMode('signup')">Sign Up</button>
+            </div>
+
+            <!-- Signup Name Field -->
+            <div id="signupFields" style="display: none;">
+                <input type="text" id="authName" placeholder="Full Name">
+            </div>
+
+            <input type="email" id="authEmail" placeholder="Email Address">
+            <input type="password" id="authPassword" placeholder="Password">
+
+            <!-- Role Selector -->
+            <div id="roleSelection" class="input-group" style="display: none;">
+                <label>Select Role:</label>
+                <select id="authRole">
+                    <option value="admin">Doctor / Admin</option>
+                    <option value="patient">Patient (Read-Only)</option>
+                </select>
+            </div>
+
+            <button id="authBtn" class="btn-primary" onclick="handleAuth()">Login</button>
+
+            <!-- Test Credentials -->
+            <div class="demo-box">
+                <p><strong>Test Accounts:</strong></p>
+                <p>Doctor: <code>admin@health.com</code> / <code>admin123</code></p>
+                <p>Patient: <code>user@health.com</code> / <code>user123</code></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MAIN DASHBOARD
+         ========================================== -->
+    <div id="appLayout" class="app-layout" style="display: none;">
+        
+        <header class="app-header">
+            <h1>Hospital Management System</h1>
+            <div class="header-right">
+                <span id="welcomeUser">Welcome, User</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <aside class="app-sidebar">
+            <div class="user-card">
+                <h3>User Profile</h3>
+                <p><strong>Role:</strong> <span id="displayRole">Patient</span></p>
+                <p id="roleNotice" class="notice">Read-Only Access</p>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            
+            <!-- Patient Entry Form -->
+            <section id="formSection" class="card">
+                <h2>Add New Patient Record</h2>
+                <div class="form-grid">
+                    <input type="text" id="name" placeholder="Patient Name">
+                    <input type="number" id="age" placeholder="Age">
+                    <input type="text" id="disease" placeholder="Disease / Diagnosis">
+                    <input type="text" id="doctor" placeholder="Doctor Name">
+                    <input type="text" id="medicine" placeholder="Medicines">
+                    <button class="btn-add" onclick="addRecord()">Add Record</button>
+                </div>
+            </section>
+
+            <!-- Patient Records Table -->
+            <section class="card">
+                <h2>Patient Records Database</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Disease</th>
+                                <th>Doctor</th>
+                                <th>Medicine</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordTable">
+                            <!-- Rows added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
